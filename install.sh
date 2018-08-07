@@ -9,3 +9,6 @@ python3 -m pip install jupyterhub
 
 #Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
 export PATH=$PATH:~/.local/bin
+
+#Generate default config
+jupyterhub --generate-config
