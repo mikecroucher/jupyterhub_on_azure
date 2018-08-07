@@ -10,6 +10,9 @@ python3 -m pip install jupyterhub
 #Install the notebook
 sudo python3 -m pip install notebook
 
+#Install some packages
+sudo python3 -m pip install numpy scipy matplotlib
+
 #Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
 export PATH=$PATH:~/.local/bin
 
