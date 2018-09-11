@@ -20,6 +20,12 @@ export PATH=$PATH:~/.local/bin
 #Generate default config
 jupyterhub --generate-config
 
+#Move certificate files
+secretsname=$(sudo find /var/lib/waagent/ -name "*.prv" | cut -c -57)
+sudo mkdir -p /etc/jupyter/ssl
+sudo cp $secretsname.crt /etc/jupyter/ssl/mycert.cert
+sudo cp $secretsname.prv /etc/jupyter/ssl/mycert.prv
+
 #Configure certificate in Jupyterhub
 cat << EOF >> ./jupyterhub_config.py
 c.JupyterHub.ssl_key = '/etc/jupyter/ssl/mycert.prv'
