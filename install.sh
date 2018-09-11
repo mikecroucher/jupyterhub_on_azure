@@ -19,5 +19,11 @@ export PATH=$PATH:~/.local/bin
 #Generate default config
 jupyterhub --generate-config
 
+#Configure certificate in Jupyterhub
+cat << EOF >> ./jupyterhub_config.py
+c.JupyterHub.ssl_key = '/etc/jupyter/ssl/mycert.prv'
+c.JupyterHub.ssl_cert = '/etc/jupyter/ssl/mycert.cert'
+EOF
+
 #Run jupyterhub
 jupyterhub
