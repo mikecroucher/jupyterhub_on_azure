@@ -7,7 +7,24 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
-#Install pre-reqs
+#create users
+number_of_users=35
+password_file=~/users.txt
+
+#Install mkpasswd
+sudo apt-get install expect
+
+ touch $password_file
+ for i in `seq 1 $number_of_users`;
+  do
+  username=training_user$i
+  sudo useradd -m -d /home/$username $username
+  userpassword=`mkpasswd`
+  echo $username:$userpassword | sudo chpasswd
+  echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
+ done
+
+#Install pre-reqs for jupyterhub
 sudo apt-get install npm
 sudo apt-get install python3-pip
 sudo apt-get install nodejs-legacy
@@ -39,6 +56,3 @@ cat << EOF >> ./jupyterhub_config.py
 c.JupyterHub.ssl_key = '/etc/jupyter/ssl/mycert.prv'
 c.JupyterHub.ssl_cert = '/etc/jupyter/ssl/mycert.cert'
 EOF
-
-#Run jupyterhub
-jupyterhub
