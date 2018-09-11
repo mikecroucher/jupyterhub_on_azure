@@ -2,6 +2,7 @@
 #Install pre-reqs
 sudo apt-get install npm
 sudo apt-get install python3-pip
+sudo apt-get install nodejs-legacy
 
 #Install Jupyterhub
 sudo npm install -g configurable-http-proxy
