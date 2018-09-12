@@ -18,15 +18,15 @@ sudo apt-get -y install apg
 #sent invalidate(group) request, exiting
 #sent invalidate(passwd) request, exiting
 #This shouldn't be a problem
-# touch $password_file
-# for i in `seq 1 $number_of_users`;
-#  do
-#  username=training_user$i
-#  sudo useradd -m -d /home/$username $username
-#  userpassword=`apg -n 1`
-#  echo $username:$userpassword | sudo chpasswd
-#  echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
-# done
+ touch $password_file
+ for i in `seq 1 $number_of_users`;
+  do
+  username=training_user$i
+  sudo useradd -m -d /home/$username $username
+  userpassword=`apg -n 1`
+  echo $username:$userpassword | sudo chpasswd
+  echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
+ done
 
 #Install pre-reqs for jupyterhub
 sudo apt-get -y install npm
@@ -66,6 +66,10 @@ cat << EOF >> ./jupyterhub_config.py
 c.JupyterHub.ssl_key = '/etc/jupyter/ssl/mycert.prv'
 c.JupyterHub.ssl_cert = '/etc/jupyter/ssl/mycert.cert'
 EOF
+
+#copy the config file
+sudo mkdir -p /etc/jupyterhub
+sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
 
 #Set up jupyterhub as a service
 cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
