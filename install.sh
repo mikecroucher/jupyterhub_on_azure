@@ -35,7 +35,7 @@ sudo apt-get -y install nodejs-legacy
 
 #Install Jupyterhub
 sudo npm install -g configurable-http-proxy
-sudo python3 -m pip install jupyterhub
+python3 -m pip install jupyterhub
 
 #Install the notebook
 sudo python3 -m pip install notebook
