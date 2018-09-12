@@ -18,15 +18,15 @@ sudo apt-get -y install apg
 #sent invalidate(group) request, exiting
 #sent invalidate(passwd) request, exiting
 #This shouldn't be a problem
- touch $password_file
- for i in `seq 1 $number_of_users`;
-  do
-  username=training_user$i
-  sudo useradd -m -d /home/$username $username
-  userpassword=`apg -n 1`
-  echo $username:$userpassword | sudo chpasswd
-  echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
- done
+# touch $password_file
+# for i in `seq 1 $number_of_users`;
+#  do
+#  username=training_user$i
+#  sudo useradd -m -d /home/$username $username
+#  userpassword=`apg -n 1`
+#  echo $username:$userpassword | sudo chpasswd
+#  echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
+# done
 
 #Install pre-reqs for jupyterhub
 sudo apt-get -y install npm
@@ -35,7 +35,7 @@ sudo apt-get -y install nodejs-legacy
 
 #Install Jupyterhub
 sudo npm install -g configurable-http-proxy
-python3 -m pip install jupyterhub
+sudo python3 -m pip install jupyterhub
 
 #Install the notebook
 sudo python3 -m pip install notebook
@@ -55,8 +55,17 @@ sudo mkdir -p /etc/jupyter/ssl
 sudo cp $secretsname.crt /etc/jupyter/ssl/mycert.cert
 sudo cp $secretsname.prv /etc/jupyter/ssl/mycert.prv
 
+#Make certificate files readable by the user under which we will run the jupyterhub service
+sudo chgrp azureuser /etc/jupyter/ssl/mycert.cert
+sudo chgrp azureuser /etc/jupyter/ssl/mycert.prv
+sudo chmod g+r /etc/jupyter/ssl/mycert.cert
+sudo chmod g+r /etc/jupyter/ssl/mycert.prv
+
 #Configure certificate in Jupyterhub
 cat << EOF >> ./jupyterhub_config.py
 c.JupyterHub.ssl_key = '/etc/jupyter/ssl/mycert.prv'
 c.JupyterHub.ssl_cert = '/etc/jupyter/ssl/mycert.cert'
 EOF
+
+#Set up jupyterhub as a service
+cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
