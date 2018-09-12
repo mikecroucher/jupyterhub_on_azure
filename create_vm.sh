@@ -22,4 +22,4 @@ az vm create \
     --secrets "$vm_secret"
 
 #Open the port for Jupyter
-az vm open-port --resource-group $resourceGroupName --name $VmName --port 8000
+az vm open-port --resource-group $resourceGroupName --name $vmName --port 8000

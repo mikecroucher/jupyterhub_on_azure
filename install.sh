@@ -12,7 +12,7 @@ number_of_users=35
 password_file=~/users.txt
 
 #Install mkpasswd
-sudo apt-get install expect
+sudo apt-get -y install whois
 
  touch $password_file
  for i in `seq 1 $number_of_users`;
@@ -25,9 +25,9 @@ sudo apt-get install expect
  done
 
 #Install pre-reqs for jupyterhub
-sudo apt-get install npm
-sudo apt-get install python3-pip
-sudo apt-get install nodejs-legacy
+sudo apt-get -y install npm
+sudo apt-get -y install python3-pip
+sudo apt-get -y install nodejs-legacy
 
 #Install Jupyterhub
 sudo npm install -g configurable-http-proxy
