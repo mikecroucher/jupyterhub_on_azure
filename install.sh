@@ -11,15 +11,19 @@ sudo apt-get update && sudo apt-get install azure-cli
 number_of_users=35
 password_file=~/users.txt
 
-#Install mkpasswd
-sudo apt-get -y install whois
+#Install apg for password generation
+sudo apt-get -y install apg
 
+#On Azure, the following creates errors like
+#sent invalidate(group) request, exiting
+#sent invalidate(passwd) request, exiting
+#This shouldn't be a problem
  touch $password_file
  for i in `seq 1 $number_of_users`;
   do
   username=training_user$i
   sudo useradd -m -d /home/$username $username
-  userpassword=`mkpasswd`
+  userpassword=`apg -n 1`
   echo $username:$userpassword | sudo chpasswd
   echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
  done
