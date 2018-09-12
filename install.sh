@@ -8,7 +8,7 @@ sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
 #create users
-number_of_users=35
+number_of_users=3
 password_file=~/users.txt
 
 #Install apg for password generation
@@ -35,7 +35,7 @@ sudo apt-get -y install nodejs-legacy
 
 #Install Jupyterhub
 sudo npm install -g configurable-http-proxy
-sudo python3 -m pip install jupyterhub
+python3 -m pip install jupyterhub
 
 #Install the notebook
 sudo python3 -m pip install notebook
@@ -72,4 +72,7 @@ sudo mkdir -p /etc/jupyterhub
 sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
 
 #Set up jupyterhub as a service
-cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
+sudo cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
+
+#Make our user part of the shadow group so that PAM authentication works
+sudo usermod -a -G shadow azureuser
