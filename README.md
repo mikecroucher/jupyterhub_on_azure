@@ -10,6 +10,6 @@ DON'T USE THIS YET!!!!!
 
 ```
 sudo systemctl daemon-reload
-sudo systemctl start jupyterhub1
-sudo systemctl status jupyterhub1
+sudo systemctl start jupyterhub
+sudo systemctl status jupyterhub
 ```
