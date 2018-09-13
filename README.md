@@ -4,6 +4,10 @@ How I got JupyterHub working on an Ubuntu 18.04 machine on Azure
 
 DON'T USE THIS YET!!!!! 
 
+I got it working far too late at night and can't be bothered to turn the commands I fired at the thing into scripts. I'm going to bed!
+Will automate all the things in the morning.
+and maybe document it!
+
 * Create a Linux VM running Ubuntu 18.04
 * Run install.sh
 * Log in to Jupyter using http://<Your VM IP Address>:8000
