@@ -13,3 +13,10 @@ sudo systemctl daemon-reload
 sudo systemctl start jupyterhub
 sudo systemctl status jupyterhub
 ```
+
+The following goes at the end of `/etc/sudoers`
+```
+Cmnd_Alias JUPYTER_CMD=/usr/local/bin/sudospawner
+%jupyterhub ALL=(azureuser) /usr/bin/sudo
+azureuser ALL=(%jupyterhub) NOPASSWD:JUPYTER_CMD
+```
