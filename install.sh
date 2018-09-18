@@ -46,6 +46,12 @@ sudo python3 -m pip install notebook
 
 #Install some packages
 sudo python3 -m pip install numpy scipy matplotlib
+#Packages for earth and environment
+#cartopy
+sudo apt-get install libproj-dev proj-data proj-bin
+sudo apt-get install libgeos-dev
+sudo python3 -m pip install cython
+sudo python3 -m pip install cartopy
 
 #Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
 export PATH=$PATH:~/.local/bin
