@@ -8,17 +8,18 @@ People can use it to set up their own servers -- no need to speak to the IT depa
 
 I'M CURRENTLY DEVELOPING THIS. IT'S NOT YET READY FOR GENERAL USE. MANY THINGS MISSING.
 
-Clone this repository, modify and run `create_vm.sh`
+* Clone this repository, modify and run `create_vm.sh` from your local machine.  This creates the Azure VM
+* Log into the created Azure VM, clone this repo and run `install.sh`
 
-I got it working far too late at night and can't be bothered to turn the commands I fired at the thing into scripts. I'm going to bed!
-Will automate all the things in the morning.
-and maybe document it!
+Start the Jupyterjib service with
 
-* Create a Linux VM running Ubuntu 18.04
-* Run install.sh
+```
+sudo systemctl start jupyterhub
+```
+
+Usernames and passwords will be created on the VM in the file users.txt
+
 * Log in to Jupyter using http://<Your VM IP Address>:8000
-
-Note to self -- document this stuff:
 
 ```
 sudo systemctl daemon-reload
