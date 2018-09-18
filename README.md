@@ -6,6 +6,10 @@ People can use it to set up their own servers -- no need to speak to the IT depa
 
 ## Setting this up yourself
 
+I'M CURRENTLY DEVELOPING THIS. IT'S NOT YET READY FOR GENERAL USE. MANY THINGS MISSING.
+
+Clone this repository, modify and run `create_vm.sh`
+
 I got it working far too late at night and can't be bothered to turn the commands I fired at the thing into scripts. I'm going to bed!
 Will automate all the things in the morning.
 and maybe document it!
