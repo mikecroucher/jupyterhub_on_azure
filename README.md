@@ -1,6 +1,6 @@
 # Jupyterhub on azure
 
-A JupyterHub instance running on Azure cloud designe for a multi-user class.  This doesn't (yet) use docker or elastic scaling. It's just a plan old server in the cloud -- albeit one that we can set up and tear down at will. 
+Scripts for automatic creation of customised JupyterHub instances running on Azure cloud designed for multi-user classes.  This doesn't (yet) use docker or elastic scaling. It's just a plan old server in the cloud -- albeit one that we can set up and tear down at will. 
 
 People can use it to set up their own servers -- no need to speak to the IT department if they don't want to
 
@@ -29,7 +29,7 @@ Cmnd_Alias JUPYTER_CMD=/usr/local/bin/sudospawner
 azureuser ALL=(%jupyterhub) NOPASSWD:JUPYTER_CMD
 ```
 
-JupyterHub cloud installs elsewhere
+## JupyterHub cloud installs elsewhere
 
 The Data Science VM has JupyterHub pre-installed (and JupyterLab on the Ubuntu DSVM) – https://docs.microsoft.com/en-us/azure/machine-learning/data-science-virtual-machine/overview 
 
