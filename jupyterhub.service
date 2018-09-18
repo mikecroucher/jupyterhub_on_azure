@@ -1,12 +1,12 @@
 [Unit]
-Description=Jupyterhub
+Description=Jupyterhub1
 After=syslog.target network.target
 
 [Service]
 User=azureuser
 Environment="PATH=/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-ExecStart=/home/azureuser/.local/bin/jupyterhub -f /etc/jupyterhub/jupyterhub_config.py
-WorkingDirectory=/home/azureuser/
+ExecStart=/home/azureuser/.local/bin/jupyterhub -f /etc/jupyterhub/jupyterhub_config.py --JupyterHub.spawner_class=sudospawner.SudoSpawner
+WorkingDirectory=/etc/jupyterhub/
 
 [Install]
 WantedBy=multi-user.target
