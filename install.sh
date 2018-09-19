@@ -26,7 +26,7 @@ sudo apt-get -y install apg
  for i in `seq 1 $number_of_users`;
   do
   username=training_user$i
-  sudo useradd -m -d /home/$username $username
+  sudo adduser --disabled-password --gecos "" $username
   userpassword=`apg -n 1`
   echo $username:$userpassword | sudo chpasswd
   echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
