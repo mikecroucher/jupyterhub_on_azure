@@ -102,3 +102,8 @@ sudo usermod -a -G shadow azureuser
 sudo systemctl enable jupyterhub
 #start the service now
 sudo systemctl start jupyterhub
+
+#Connect the data drive
+sudo mkdir /datadrive
+#The datadrive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
+sudo mount /dev/sdc1 /datadrive

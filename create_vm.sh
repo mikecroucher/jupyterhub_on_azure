@@ -3,7 +3,8 @@ keyvaultName=jupyterkeyvault
 location=westus2
 certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
-vmName=jupyter9
+disk_name=earth_data
+vmName=jupyter12
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
@@ -29,3 +30,7 @@ jupyter_ip=$(az vm list --show-details --query "[?name=='$vmName'].{IP:publicIps
 
 echo "Jupyterhub should be running at https://$jupyter_ip:8000"
 echo "Give it a minute to start up before you try to access it"
+
+#Connect data disk
+diskId=$(az disk show -g $resourceGroupName -n $disk_name --query 'id' -o tsv)
+az vm disk attach -g $resourceGroupName --vm-name $vmName --disk $diskId
