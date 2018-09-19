@@ -1,5 +1,5 @@
 [Unit]
-Description=Jupyterhub1
+Description=Jupyterhub
 After=syslog.target network.target
 
 [Service]
