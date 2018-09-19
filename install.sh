@@ -53,6 +53,9 @@ sudo apt-get -y install libproj-dev proj-data proj-bin
 sudo apt-get -y install libgeos-dev
 sudo python3 -m pip install cython
 sudo python3 -m pip install cartopy
+#netcdf
+sudo apt-get -y install libnetcdf-dev netcdf-bin
+sudo python3 -m pip install netCDF4
 
 #Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
 export PATH=$PATH:~/.local/bin
