@@ -7,7 +7,7 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
-#By defauly, users can read the files in each other's home directory.
+#By default, users can read the files in each other's home directory.
 #Change this so only sudo users have this ability
 sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
 
