@@ -93,3 +93,6 @@ sudo cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
 
 #Make our user part of the shadow group so that PAM authentication works
 sudo usermod -a -G shadow azureuser
+
+#Start the Jupyterhub service
+sudo systemctl start jupyterhub
