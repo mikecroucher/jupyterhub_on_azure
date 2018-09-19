@@ -81,6 +81,7 @@ EOF
 #copy the config file
 sudo mkdir -p /etc/jupyterhub
 sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
+sudo chown -R azureuser:azureuser /etc/jupyterhub/
 
 #Set up sudospawner
 #Following docs at https://github.com/jupyterhub/jupyterhub/wiki/Using-sudo-to-run-JupyterHub-without-root-privileges retrieved 19th September 2018
