@@ -92,11 +92,10 @@ echo "azureuser ALL=(%jupyterhub) NOPASSWD:JUPYTER_CMD" | sudo tee -a /etc/sudoe
 #Set up jupyterhub as a service
 sudo cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
 
+#Make our user part of the shadow group so that PAM authentication works
+sudo usermod -a -G shadow azureuser
+
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
 #start the service now
 sudo systemctl start jupyterhub
-
-#Make our user part of the shadow group so that PAM authentication works
-sudo usermod -a -G shadow azureuser
-
