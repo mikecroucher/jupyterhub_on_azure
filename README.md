@@ -11,7 +11,7 @@ I'M CURRENTLY DEVELOPING THIS. IT'S NOT YET READY FOR GENERAL USE. MANY THINGS M
 * Clone this repository, modify and run `create_vm.sh` from your local machine.  This creates the Azure VM
 * Log into the created Azure VM, clone this repo and run `install.sh`
 
-Start the Jupyterjib service with
+Start the Jupyterhub service with
 
 ```
 sudo systemctl start jupyterhub
