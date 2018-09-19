@@ -19,7 +19,7 @@ sudo systemctl start jupyterhub
 
 Usernames and passwords will be created on the VM in the file users.txt
 
-* Log in to Jupyter using http://<Your VM IP Address>:8000
+* Log in to Jupyter using http://Your VM IP Address:8000
 
 ```
 sudo systemctl daemon-reload
