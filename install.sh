@@ -103,6 +103,10 @@ sudo cp ./jupyterhub.service /etc/systemd/system/jupyterhub.service
 #Make our user part of the shadow group so that PAM authentication works
 sudo usermod -a -G shadow azureuser
 
+#Do this next line or we'll not be able to connect to port 443
+#Details at https://github.com/jupyterhub/jupyterhub/issues/774
+sudo setcap 'cap_net_bind_service=+ep' `which nodejs`
+
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
 #start the service now
