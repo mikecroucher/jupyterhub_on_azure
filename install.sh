@@ -81,6 +81,11 @@ c.JupyterHub.ssl_key = '/etc/jupyter/ssl/mycert.prv'
 c.JupyterHub.ssl_cert = '/etc/jupyter/ssl/mycert.cert'
 EOF
 
+#Run on port 443 so that it uses https
+cat << EOF >> ./jupyterhub_config.py
+c.JupyterHub.port = 443
+EOF
+
 #copy the config file
 sudo mkdir -p /etc/jupyterhub
 sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py

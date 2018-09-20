@@ -4,7 +4,7 @@ location=westus2
 certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
-vmName=jupyter12
+vmName=jupyter13
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
@@ -24,7 +24,7 @@ az vm create \
     --secrets "$vm_secret"
 
 #Open the port for Jupyter
-az vm open-port --resource-group $resourceGroupName --name $vmName --port 8000
+az vm open-port --resource-group $resourceGroupName --name $vmName --port 443
 
 jupyter_ip=$(az vm list --show-details --query "[?name=='$vmName'].{IP:publicIps}" -o tsv)
 
