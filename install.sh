@@ -116,3 +116,21 @@ sudo systemctl start jupyterhub
 sudo mkdir /datadrive
 #The datadrive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
 sudo mount /dev/sdc1 /datadrive
+
+#Connect the backup drive
+sudo mkdir /backup
+#The backup drive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
+sudo mount /dev/sdd1 /backup
+
+#Install rsnapshot to do the backups
+sudo apt-get -y install rsnapshot
+#Snapshot_root location
+sudo sed -i s,snapshot_root   /var/cache/rsnapshot/,snapshot_root   /backup/,g /etc/rsnapshot.conf
+#We don't want to back up /etc and /usr/local so comment these lines out
+sudo sed -i s,backup /etc/           localhost/,#backup /etc/           localhost/,g /etc/rsnapshot.conf
+sudo sed -i s,backup /usr/local/     localhost/,#backup /usr/local/     localhost/,g /etc/rsnapshot.conf
+#Activate the cron job by uncommenting the relevant lines
+sed -i '/alpha/s/^#//g' /etc/cron.d/rsnapshot
+sed -i '/beta/s/^#//g' /etc/cron.d/rsnapshot
+sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
+
