@@ -4,6 +4,7 @@ location=westus2
 certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
+backup_diskname=jupyterbackup
 vmName=jupyter13
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
@@ -34,3 +35,7 @@ echo "Give it a minute to start up before you try to access it"
 #Connect data disk
 diskId=$(az disk show -g $resourceGroupName -n $disk_name --query 'id' -o tsv)
 az vm disk attach -g $resourceGroupName --vm-name $vmName --disk $diskId
+
+#Connect backup disk
+diskIdBackup=$(az disk show -g $resourceGroupName -n $backup_diskname e --query 'id' -o tsv)
+az vm disk attach -g $resourceGroupName --vm-name $vmName --disk diskIdBackup
