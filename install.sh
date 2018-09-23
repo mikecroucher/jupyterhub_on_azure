@@ -125,10 +125,10 @@ sudo mount /dev/sdd1 /backup
 #Install rsnapshot to do the backups
 sudo apt-get -y install rsnapshot
 #Snapshot_root location
-sudo sed -i s,snapshot_root   /var/cache/rsnapshot/,snapshot_root   /backup/,g /etc/rsnapshot.conf
+sudo sed -i s,/var/cache/rsnapshot/,/backup/,g /etc/rsnapshot.conf
 #We don't want to back up /etc and /usr/local so comment these lines out
-sudo sed -i s,backup /etc/           localhost/,#backup /etc/           localhost/,g /etc/rsnapshot.conf
-sudo sed -i s,backup /usr/local/     localhost/,#backup /usr/local/     localhost/,g /etc/rsnapshot.conf
+sudo sed -i 's,backup\t/etc,#backup\t/etc,g' /etc/rsnapshot.conf
+sudo sed -i 's,backup\t/usr/local,#backup /usr/local,g' /etc/rsnapshot.conf
 #Activate the cron job by uncommenting the relevant lines
 sed -i '/alpha/s/^#//g' /etc/cron.d/rsnapshot
 sed -i '/beta/s/^#//g' /etc/cron.d/rsnapshot
