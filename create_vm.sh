@@ -5,7 +5,7 @@ certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
 backup_diskname=jupyterbackup
-vmName=jupyter13
+vmName=jupyter30
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
@@ -33,9 +33,9 @@ echo "Jupyterhub should be running at https://$jupyter_ip:8000"
 echo "Give it a minute to start up before you try to access it"
 
 #Connect data disk
-diskId=$(az disk show -g $resourceGroupName -n $disk_name --query 'id' -o tsv)
-az vm disk attach -g $resourceGroupName --vm-name $vmName --disk $diskId
+#diskId=$(az disk show -g $resourceGroupName -n $disk_name --query 'id' -o tsv)
+#az vm disk attach -g $resourceGroupName --vm-name $vmName --disk $diskId
 
 #Connect backup disk
-diskIdBackup=$(az disk show -g $resourceGroupName -n $backup_diskname e --query 'id' -o tsv)
-az vm disk attach -g $resourceGroupName --vm-name $vmName --disk diskIdBackup
+#diskIdBackup=$(az disk show -g $resourceGroupName -n $backup_diskname --query 'id' -o tsv)
+#az vm disk attach -g $resourceGroupName --vm-name $vmName --disk $diskIdBackup
