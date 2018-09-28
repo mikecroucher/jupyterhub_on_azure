@@ -11,6 +11,13 @@ sudo apt-get update && sudo apt-get install azure-cli
 #Change this so only sudo users have this ability
 sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
 
+#Add the aliases requested to .bashrc
+cat << EOF >> /etc/skel/.bashrc
+alias rm 'rm -i'
+alias mv 'mv -i'
+alias cp 'cp -i’
+EOF
+
 #create users
 number_of_users=3
 password_file=~/users.txt
@@ -133,4 +140,5 @@ sudo sed -i 's,backup\t/usr/local,#backup /usr/local,g' /etc/rsnapshot.conf
 sed -i '/alpha/s/^#//g' /etc/cron.d/rsnapshot
 sed -i '/beta/s/^#//g' /etc/cron.d/rsnapshot
 sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
+
 
