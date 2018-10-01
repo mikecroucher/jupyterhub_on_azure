@@ -15,7 +15,7 @@ sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
 cat << EOF >> /etc/skel/.bashrc
 alias rm 'rm -i'
 alias mv 'mv -i'
-alias cp 'cp -i’
+alias cp 'cp -i'
 EOF
 
 #create users
