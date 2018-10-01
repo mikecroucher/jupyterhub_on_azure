@@ -93,6 +93,11 @@ cat << EOF >> ./jupyterhub_config.py
 c.JupyterHub.port = 443
 EOF
 
+#Redirect http:// to https://
+cat << EOF >> ./jupyterhub_config.py
+c.ConfigurableHTTPProxy.command = ['configurable-http-proxy', '--redirect-port', '80']
+EOF
+
 #copy the config file
 sudo mkdir -p /etc/jupyterhub
 sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
