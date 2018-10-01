@@ -98,6 +98,11 @@ cat << EOF >> ./jupyterhub_config.py
 c.ConfigurableHTTPProxy.command = ['configurable-http-proxy', '--redirect-port', '80']
 EOF
 
+#Add jupyterhub admin users
+cat << EOF >> ./jupyterhub_config.py
+c.Authenticator.admin_users = {'azureuser', 'training_user1'}
+EOF
+
 #copy the config file
 sudo mkdir -p /etc/jupyterhub
 sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
