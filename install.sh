@@ -130,14 +130,14 @@ sudo systemctl enable jupyterhub
 sudo systemctl start jupyterhub
 
 #Connect the data drive
-#sudo mkdir /datadrive
+sudo mkdir /datadrive
 #The datadrive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
-#sudo mount /dev/sdc1 /datadrive
+sudo mount /dev/sdc1 /datadrive
 
 #Connect the backup drive
-#sudo mkdir /backup
+sudo mkdir /backup
 #The backup drive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
-#sudo mount /dev/sdd1 /backup
+sudo mount /dev/sdd1 /backup
 
 #Install rsnapshot to do the backups
 sudo apt-get -y install rsnapshot
