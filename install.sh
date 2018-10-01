@@ -19,7 +19,7 @@ alias cp='cp -i'
 EOF
 
 #create users
-number_of_users=3
+number_of_users=40
 password_file=~/users.txt
 
 #Install apg for password generation
