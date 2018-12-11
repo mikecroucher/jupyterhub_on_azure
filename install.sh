@@ -77,7 +77,7 @@ sudo apt-get -y install libnetcdf-dev netcdf-bin
 sudo python3 -m pip install netCDF4
 
 #Install nbgrader
-pip install nbgrader
+sudo python3 -m pip install nbgrader
 jupyter nbextension install --system --py nbgrader --overwrite
 jupyter nbextension enable --system --py nbgrader
 jupyter serverextension enable --system --py nbgrader
