@@ -49,9 +49,14 @@ sudo apt-get -y install apg
 sudo apt-get -y install npm
 sudo apt-get -y install python3-pip
 sudo apt-get -y install nodejs-legacy
+#Update node
+sudo npm cache clean -f 
+sudo npm install -g n 
+sudo n stable
+#install configurable-http-proxy
+sudo npm install -g configurable-http-proxy
 
 #Install Jupyterhub
-sudo npm install -g configurable-http-proxy
 python3 -m pip install jupyterhub
 sudo python3 -m pip install sudospawner
 
