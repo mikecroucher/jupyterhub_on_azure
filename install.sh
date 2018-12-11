@@ -11,7 +11,7 @@ sudo apt-get update && sudo apt-get install azure-cli
 #Change this so only sudo users have this ability
 sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
 
-#Add the aliases requested to .bashrc
+#Add the aliases requested from the academics to .bashrc
 cat << EOF >> /etc/skel/.bashrc
 alias rm='rm -i'
 alias mv='mv -i'
@@ -116,10 +116,10 @@ EOF
 
 #Add jupyterhub admin users
 cat << EOF >> ./jupyterhub_config.py
-c.Authenticator.admin_users = {'azureuser', 'training_user1'}
+c.Authenticator.admin_users = {'azureuser', 'instructor'}
 EOF
 
-#copy the config file
+#copy the Jupyterhub config file
 sudo mkdir -p /etc/jupyterhub
 sudo cp ./jupyterhub_config.py /etc/jupyterhub/jupyterhub_config.py
 sudo chown -R azureuser:azureuser /etc/jupyterhub/
@@ -146,14 +146,14 @@ sudo systemctl enable jupyterhub
 sudo systemctl start jupyterhub
 
 #Connect the data drive
-sudo mkdir /datadrive
+#sudo mkdir /datadrive
 #The datadrive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
-sudo mount /dev/sdc1 /datadrive
+#sudo mount /dev/sdc1 /datadrive
 
 #Connect the backup drive
-sudo mkdir /backup
+#sudo mkdir /backup
 #The backup drive is probably going to be connected /dev/sdc1 but I should come up with some way of checking properly
-sudo mount /dev/sdd1 /backup
+#sudo mount /dev/sdd1 /backup
 
 #Install rsnapshot to do the backups
 sudo apt-get -y install rsnapshot
