@@ -38,7 +38,13 @@ sudo apt-get -y install apg
   echo $username:$userpassword | sudo chpasswd
   echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
  done
-
+ 
+ #Install the instructor username
+ sudo adduser --disabled-password --gecos "" instructor
+ userpassword=`apg -n 1`
+ echo instructor:$userpassword | sudo chpasswd
+ echo "UserID:" instructor "has been created with the following password " $userpassword >> $password_file
+ 
 #Install pre-reqs for jupyterhub
 sudo apt-get -y install npm
 sudo apt-get -y install python3-pip
