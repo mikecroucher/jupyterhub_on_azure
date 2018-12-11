@@ -64,6 +64,14 @@ sudo python3 -m pip install cartopy
 sudo apt-get -y install libnetcdf-dev netcdf-bin
 sudo python3 -m pip install netCDF4
 
+#Install nbgrader
+pip install nbgrader
+jupyter nbextension install --system --py nbgrader --overwrite
+jupyter nbextension enable --system --py nbgrader
+jupyter serverextension enable --system --py nbgrader
+#Disable create assignment for all users and then enable it for instructor only
+jupyter nbextension disable --sys-prefix create_assignment/main
+
 #Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
 export PATH=$PATH:~/.local/bin
 
