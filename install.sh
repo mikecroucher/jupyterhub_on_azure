@@ -58,6 +58,12 @@ sudo python3 -m pip install sudospawner
 #Install the notebook
 sudo python3 -m pip install notebook
 
+#Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
+export PATH=$PATH:~/.local/bin
+
+#Generate default config
+jupyterhub --generate-config
+
 #Install some packages
 sudo python3 -m pip install numpy scipy matplotlib
 #Packages for earth and environment
@@ -76,13 +82,9 @@ jupyter nbextension install --system --py nbgrader --overwrite
 jupyter nbextension enable --system --py nbgrader
 jupyter serverextension enable --system --py nbgrader
 #Disable create assignment for all users and then enable it for instructor only
+#Following the prodedure at https://nbgrader.readthedocs.io/en/latest/user_guide/installation.html retrieved 11/12/2018 
 jupyter nbextension disable --sys-prefix create_assignment/main
-
-#Installing by pip didn't add the jupyterhub binary folder to the path so let's do that now
-export PATH=$PATH:~/.local/bin
-
-#Generate default config
-jupyterhub --generate-config
+sudo -H -u instructor jupyter nbextension enable --user create_assignment/main
 
 #Move certificate files
 secretsname=$(sudo find /var/lib/waagent/ -name "*.prv" | cut -c -57)
