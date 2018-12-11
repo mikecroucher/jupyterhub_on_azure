@@ -1,7 +1,7 @@
 #/bin/bash
 keyvaultName=jupyterkeyvault
 location=westus2
-certificateName=jupterdns
+certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
 backup_diskname=jupyterbackup
