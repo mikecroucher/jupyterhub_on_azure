@@ -144,6 +144,7 @@ sudo usermod -a -G shadow azureuser
 #Do this next line or we'll not be able to connect to port 443
 #Details at https://github.com/jupyterhub/jupyterhub/issues/774
 sudo setcap 'cap_net_bind_service=+ep' `which nodejs`
+sudo setcap 'cap_net_bind_service=+ep' `which node`
 
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
