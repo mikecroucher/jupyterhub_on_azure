@@ -82,14 +82,14 @@ sudo apt-get -y install libnetcdf-dev netcdf-bin
 sudo python3 -m pip install netCDF4
 
 #Install nbgrader
-#sudo python3 -m pip install nbgrader
-#jupyter nbextension install --system --py nbgrader --overwrite
-#jupyter nbextension enable --system --py nbgrader
-#jupyter serverextension enable --system --py nbgrader
+sudo python3 -m pip install nbgrader
+jupyter nbextension install --system --py nbgrader --overwrite
+jupyter nbextension enable --system --py nbgrader
+jupyter serverextension enable --system --py nbgrader
 #Disable create assignment for all users and then enable it for instructor only
 #Following the prodedure at https://nbgrader.readthedocs.io/en/latest/user_guide/installation.html retrieved 11/12/2018 
-#jupyter nbextension disable --sys-prefix create_assignment/main
-#sudo -H -u instructor jupyter nbextension enable --user create_assignment/main
+jupyter nbextension disable --sys-prefix create_assignment/main
+sudo -H -u instructor jupyter nbextension enable --user create_assignment/main
 
 #Move certificate files
 secretsname=$(sudo find /var/lib/waagent/ -name "*.prv" | cut -c -57)
