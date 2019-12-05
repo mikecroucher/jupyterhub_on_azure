@@ -128,13 +128,12 @@ sudo setcap 'cap_net_bind_service=+ep' `which node`
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x ./Miniconda3-latest-Linux-x86_64.sh
 sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
-sudo /opt/conda init --system
+sudo /opt/conda/bin/conda init --system
 
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
 #start the service now
 sudo systemctl start jupyterhub
-
 
 #Connect the data drive
 #sudo mkdir /datadrive
