@@ -6,14 +6,10 @@ People can use it to set up their own servers -- no need to speak to the IT depa
 
 ## Setting Up a new server
 
-* I'M CURRENTLY DEVELOPING THIS. 
-* IT'S NOT YET READY FOR GENERAL USE. 
-* MANY THINGS MISSING.
-* DOCUMENTATION IS NOT UP TO DATE.
-* IT'S VERY SPECIFIC FOR THE COURSE WHO ORIGINALLY NEEDED IT.
-
-* Clone this repository, modify and run `create_vm.sh` from your local machine.  This creates the Azure VM
-* Log into the created Azure VM, clone this repo and run `install.sh`
+* Clone this repository
+* Modify `create_key.sh` and run it once. This is for the SSL support
+* Moidfy `install.sh` for the commands that will be run on the VM
+* Modify and run `create_vm.sh` from your local machine.  This creates the Azure VM
 
 ## Useful sysadmin notes when using the resulting server
 
