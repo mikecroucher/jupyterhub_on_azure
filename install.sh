@@ -69,28 +69,6 @@ export PATH=$PATH:~/.local/bin
 #Generate default config
 jupyterhub --generate-config
 
-#Install some packages
-sudo python3 -m pip install numpy scipy matplotlib
-#Packages for earth and environment
-#cartopy
-sudo apt-get -y install libproj-dev proj-data proj-bin
-sudo apt-get -y install libgeos-dev
-sudo python3 -m pip install cython
-sudo python3 -m pip install cartopy
-#netcdf
-sudo apt-get -y install libnetcdf-dev netcdf-bin
-sudo python3 -m pip install netCDF4
-
-#Install nbgrader
-sudo python3 -m pip install nbgrader
-jupyter nbextension install --system --py nbgrader --overwrite
-jupyter nbextension enable --system --py nbgrader
-jupyter serverextension enable --system --py nbgrader
-#Disable create assignment for all users and then enable it for instructor only
-#Following the prodedure at https://nbgrader.readthedocs.io/en/latest/user_guide/installation.html retrieved 11/12/2018 
-jupyter nbextension disable --sys-prefix create_assignment/main
-sudo -H -u instructor jupyter nbextension enable --user create_assignment/main
-
 #Move certificate files
 secretsname=$(sudo find /var/lib/waagent/ -name "*.prv" | cut -c -57)
 sudo mkdir -p /etc/jupyter/ssl
@@ -146,10 +124,17 @@ sudo usermod -a -G shadow azureuser
 sudo setcap 'cap_net_bind_service=+ep' `which nodejs`
 sudo setcap 'cap_net_bind_service=+ep' `which node`
 
+#Install Conda environment
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x ./Miniconda3-latest-Linux-x86_64.sh
+sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
+sudo /opt/conda init --system
+
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
 #start the service now
 sudo systemctl start jupyterhub
+
 
 #Connect the data drive
 #sudo mkdir /datadrive
@@ -162,15 +147,15 @@ sudo systemctl start jupyterhub
 #sudo mount /dev/sdd1 /backup
 
 #Install rsnapshot to do the backups
-sudo apt-get -y install rsnapshot
+#sudo apt-get -y install rsnapshot
 #Snapshot_root location
-sudo sed -i s,/var/cache/rsnapshot/,/backup/,g /etc/rsnapshot.conf
+#sudo sed -i s,/var/cache/rsnapshot/,/backup/,g /etc/rsnapshot.conf
 #We don't want to back up /etc and /usr/local so comment these lines out
-sudo sed -i 's,backup\t/etc,#backup\t/etc,g' /etc/rsnapshot.conf
-sudo sed -i 's,backup\t/usr/local,#backup /usr/local,g' /etc/rsnapshot.conf
+#sudo sed -i 's,backup\t/etc,#backup\t/etc,g' /etc/rsnapshot.conf
+#sudo sed -i 's,backup\t/usr/local,#backup /usr/local,g' /etc/rsnapshot.conf
 #Activate the cron job by uncommenting the relevant lines
-sed -i '/alpha/s/^#//g' /etc/cron.d/rsnapshot
-sed -i '/beta/s/^#//g' /etc/cron.d/rsnapshot
-sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
+#sed -i '/alpha/s/^#//g' /etc/cron.d/rsnapshot
+#sed -i '/beta/s/^#//g' /etc/cron.d/rsnapshot
+#sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
 
 
