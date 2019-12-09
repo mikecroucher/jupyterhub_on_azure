@@ -64,7 +64,7 @@ sudo chown -R azureuser:azureuser /etc/jupyterhub/
 
 #Set up sudospawner
 #Following docs at https://github.com/jupyterhub/jupyterhub/wiki/Using-sudo-to-run-JupyterHub-without-root-privileges retrieved 19th September 2018
-conda install -c conda-forge sudospawner -y
+sudo /opt/conda/bin/conda install -c conda-forge sudospawner -y
 echo "Cmnd_Alias JUPYTER_CMD=/opt/conda/bin/sudospawner" | sudo tee -a /etc/sudoers
 echo "%jupyterhub ALL=(azureuser) /usr/bin/sudo" | sudo tee -a /etc/sudoers
 echo "azureuser ALL=(%jupyterhub) NOPASSWD:JUPYTER_CMD" | sudo tee -a /etc/sudoers
