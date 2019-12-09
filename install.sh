@@ -13,11 +13,13 @@ chmod +x ./Miniconda3-latest-Linux-x86_64.sh
 sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
 sudo /opt/conda/bin/conda init --system
 
+#Make JupyterHub conda aware
+sudo  /opt/conda/bin/conda install nb_conda_kernels -y
+
 #Install NAG environment
-sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 -y
+sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib -y
 
 # Install JupyterHub
-sudo  /opt/conda/bin/conda install nb_conda -y
 sudo  /opt/conda/bin/conda install jupyterhub -y
 
 #Configure JupyterHub
