@@ -22,6 +22,12 @@ sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba 
 python -m pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
 /opt/conda/bin/conda deactivate
 
+#NAG License set up.  Will need a license manually adding in at /opt/nag.lic
+sudo touch /opt/nag.lic
+sudo cat << EOF >> /etc/profile
+export NAG_KUSARI_FILE=/opt/nag.lic
+EOF
+
 # Install JupyterHub
 sudo  /opt/conda/bin/conda install jupyterhub -y
 
