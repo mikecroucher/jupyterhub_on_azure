@@ -16,11 +16,9 @@ sudo /opt/conda/bin/conda init --system
 #Make JupyterHub conda aware
 sudo  /opt/conda/bin/conda install nb_conda_kernels -y
 
-#Install NAG environment
-sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib -y
-/opt/conda/bin/conda activate NAGLibrary
-python -m pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
-/opt/conda/bin/conda deactivate
+Install NAG environment
+sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib pip -y
+/opt/conda/envs/NAGLibrary/bin/pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
 
 #NAG License set up.  Will need a license manually adding in at /opt/nag.lic
 mkdir -p /opt/NAG/
