@@ -14,8 +14,8 @@ sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
 sudo /opt/conda/bin/conda init --system
 
 # Install JupyterHub
-conda install nb_conda -y
-conda install jupyterhub -y
+sudo  /opt/conda/bin/conda install nb_conda -y
+sudo  /opt/conda/bin/conda install jupyterhub -y
 
 #By default, users can read the files in each other's home directory.
 #Change this so only sudo users have this ability
