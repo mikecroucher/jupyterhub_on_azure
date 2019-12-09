@@ -7,6 +7,12 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
+#Install Conda environment
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+chmod +x ./Miniconda3-latest-Linux-x86_64.sh
+sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
+sudo /opt/conda/bin/conda init --system
+
 #By default, users can read the files in each other's home directory.
 #Change this so only sudo users have this ability
 sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
@@ -123,12 +129,6 @@ sudo usermod -a -G shadow azureuser
 #Details at https://github.com/jupyterhub/jupyterhub/issues/774
 sudo setcap 'cap_net_bind_service=+ep' `which nodejs`
 sudo setcap 'cap_net_bind_service=+ep' `which node`
-
-#Install Conda environment
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x ./Miniconda3-latest-Linux-x86_64.sh
-sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
-sudo /opt/conda/bin/conda init --system
 
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
