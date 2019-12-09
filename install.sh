@@ -18,6 +18,9 @@ sudo  /opt/conda/bin/conda install nb_conda_kernels -y
 
 #Install NAG environment
 sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib -y
+/opt/conda/bin/conda activate NAGLibrary
+python -m pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
+/opt/conda/bin/conda deactivate
 
 # Install JupyterHub
 sudo  /opt/conda/bin/conda install jupyterhub -y
