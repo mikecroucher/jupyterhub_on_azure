@@ -4,3 +4,4 @@ runcmd:
   - git clone https://github.com/mikecroucher/jupyterhub_on_azure
   - cd jupyterhub_on_azure
   - ./install.sh > /root/install_log.log
+  - ./install_multiblas.sh > /root/multiblas_log.log
