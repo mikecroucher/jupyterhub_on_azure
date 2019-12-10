@@ -1,3 +1,4 @@
+#!/bin/bash
 # Build numpy from source with no optimised BLAS and LAPCK
 apt install gcc -y
 
