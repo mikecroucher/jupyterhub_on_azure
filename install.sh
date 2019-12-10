@@ -7,16 +7,10 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
-#Install Conda environment
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x ./Miniconda3-latest-Linux-x86_64.sh
-sudo ./Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/
-sudo /opt/conda/bin/conda init --system
-
 #Make JupyterHub conda aware
 sudo  /opt/conda/bin/conda install nb_conda_kernels -y
 
-Install NAG environment
+#Install NAG environment
 sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib pip -y
 /opt/conda/envs/NAGLibrary/bin/pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
 
