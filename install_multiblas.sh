@@ -9,3 +9,4 @@ wget https://github.com/numpy/numpy/archive/v1.17.4.tar.gz
 tar -xzf ./v1.17.4.tar.gz
 cd numpy-1.17.4/
 conda deactivate
+echo "Multiblas script finished"
