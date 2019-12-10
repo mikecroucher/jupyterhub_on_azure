@@ -1,4 +1,7 @@
 #!/bin/bash
+# THe point of this demo is to show that different implementations of BLAS matter a lot
+# Provide kernels that just contain numpy and a BLAS
+
 # Build numpy from source with no optimised BLAS and LAPCK
 apt install gcc -y
 
@@ -11,3 +14,9 @@ cd numpy-1.17.4/
 BLAS=None LAPACK=None ATLAS=None python setup.py install
 conda deactivate
 echo "Multiblas script finished"
+
+## OpenBLAS
+conda create -n BLAS-OpenBLAS Python=3.6 nomkl numpy -y
+
+## MKL
+conda create -n BLAS-MKL Python=3.6 numpy -y
