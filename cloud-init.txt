@@ -3,5 +3,6 @@ package_upgrade: true
 runcmd:
   - git clone https://github.com/mikecroucher/jupyterhub_on_azure
   - cd jupyterhub_on_azure
-  - ./install.sh > /root/install_log.log
-  - ./install_multiblas.sh > /root/multiblas_log.log
+  - ./install_conda.sh > /root/install_conda.log
+  - ./install.sh > /root/install.log
+  - ./install_multiblas.sh > /root/multiblas.log
