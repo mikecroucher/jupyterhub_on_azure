@@ -16,7 +16,7 @@ conda deactivate
 echo "Multiblas script finished"
 
 ## OpenBLAS
-conda create -n BLAS-OpenBLAS Python=3.6 nomkl numpy -y
+conda create -n BLAS-OpenBLAS Python=3.6 nomkl numpy ipykernel -y
 
 ## MKL
-conda create -n BLAS-MKL Python=3.6 numpy -y
+conda create -n BLAS-MKL Python=3.6 numpy ipykernel -y
