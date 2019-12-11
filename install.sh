@@ -11,7 +11,7 @@ sudo apt-get update && sudo apt-get install azure-cli
 sudo  /opt/conda/bin/conda install nb_conda_kernels -y
 
 #Install NAG environment
-sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib pip -y
+sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib pip pandas -y
 /opt/conda/envs/NAGLibrary/bin/pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
 source /opt/conda/etc/profile.d/conda.sh
 conda install -c conda-forge jupyter_contrib_nbextensions -y
