@@ -13,6 +13,9 @@ sudo  /opt/conda/bin/conda install nb_conda_kernels -y
 #Install NAG environment
 sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib pip -y
 /opt/conda/envs/NAGLibrary/bin/pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
+source /opt/conda/etc/profile.d/conda.sh
+conda install -c conda-forge jupyter_contrib_nbextensions -y
+conda deactivate
 
 #NAG License set up.  Will need a license manually adding in at /opt/nag.lic
 mkdir -p /opt/NAG/
@@ -114,7 +117,8 @@ sudo apt-get -y install apg
   do
   username=training_user$i
   sudo adduser --disabled-password --gecos "" $username
-  userpassword=`apg -n 1`
+  #userpassword=`apg -n 1`
+  userpassword=NAGpass_$i
   echo $username:$userpassword | sudo chpasswd
   echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
  done
