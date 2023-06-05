@@ -5,7 +5,7 @@
 resourceGroupName=myResourceGroupSecureWeb2
 keyvaultName=jupyterkeyvault
 location=westus2
-certificatName=mycert
+certificateName=mycert
 
 #Creates the resource group in Azure
 az group create --name $resourceGroupName --location $location
@@ -18,7 +18,7 @@ az keyvault create \
 
 # Creates the self signed certificate in Azure
 az keyvault certificate create \
-    --vault-name $keyvault_name \
+    --vault-name $keyvaultName \
     --name $certificateName \
     --policy "$(az keyvault certificate get-default-policy)"
 
