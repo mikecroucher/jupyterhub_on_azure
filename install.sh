@@ -7,26 +7,14 @@ curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
 sudo apt-get install apt-transport-https
 sudo apt-get update && sudo apt-get install azure-cli
 
-#Make JupyterHub conda aware
-sudo  /opt/conda/bin/conda install nb_conda_kernels -y
-
-#Install NAG environment
-sudo /opt/conda/bin/conda create -n NAGLibrary Python=3.7 ipykernel scipy numba matplotlib pip pandas -y
-/opt/conda/envs/NAGLibrary/bin/pip install --extra-index-url https://www.nag.com/downloads/py/naginterfaces_mkl naginterfaces
-source /opt/conda/etc/profile.d/conda.sh
-conda install -c conda-forge jupyter_contrib_nbextensions -y
-conda deactivate
-
-#NAG License set up.  Will need a license manually adding in at /opt/nag.lic
-mkdir -p /opt/NAG/
-sudo touch /opt/NAG/nag.key
 
 # Install JupyterHub
-sudo  /opt/conda/bin/conda install jupyterhub -y
+sudo apt-get install nodejs npm -y
+sudo  pip install jupyterhub
 
 #Configure JupyterHub
 #Generate default config
-/opt/conda/bin/jupyterhub --generate-config
+/usr/local/bin/jupyterhub --generate-config
 
 #Move certificate files
 secretsname=$(sudo find /var/lib/waagent/ -name "*.prv" | cut -c -57)
@@ -68,8 +56,8 @@ sudo chown -R azureuser:azureuser /etc/jupyterhub/
 
 #Set up sudospawner
 #Following docs at https://github.com/jupyterhub/jupyterhub/wiki/Using-sudo-to-run-JupyterHub-without-root-privileges retrieved 19th September 2018
-sudo /opt/conda/bin/conda install -c conda-forge sudospawner -y
-echo "Cmnd_Alias JUPYTER_CMD=/opt/conda/bin/sudospawner" | sudo tee -a /etc/sudoers
+sudo pip install sudospawner
+echo "Cmnd_Alias JUPYTER_CMD = /usr/local/bin/sudospawner" | sudo tee -a /etc/sudoers
 echo "%jupyterhub ALL=(azureuser) /usr/bin/sudo" | sudo tee -a /etc/sudoers
 echo "azureuser ALL=(%jupyterhub) NOPASSWD:JUPYTER_CMD" | sudo tee -a /etc/sudoers
 
@@ -83,7 +71,7 @@ sudo usermod -a -G shadow azureuser
 #Details at https://github.com/jupyterhub/jupyterhub/issues/774
 #sudo setcap 'cap_net_bind_service=+ep' `which nodejs`
 #sudo setcap 'cap_net_bind_service=+ep' `which node`
-sudo setcap 'cap_net_bind_service=+ep' /opt/conda/bin/node 
+sudo setcap 'cap_net_bind_service=+ep' /usr/bin/node 
 
 #Enable the jupyterhub service so it starts at boot
 sudo systemctl enable jupyterhub
@@ -102,7 +90,7 @@ alias cp='cp -i'
 EOF
 
 #create users
-number_of_users=50
+number_of_users=5
 password_file=~/users.txt
 
 #Install apg for password generation
@@ -118,7 +106,7 @@ sudo apt-get -y install apg
   username=training_user$i
   sudo adduser --disabled-password --gecos "" $username
   #userpassword=`apg -n 1`
-  userpassword=NAGpass_$i
+  userpassword=mathPass_$i
   echo $username:$userpassword | sudo chpasswd
   echo "UserID:" $username "has been created with the following password " $userpassword >> $password_file
  done
@@ -152,6 +140,6 @@ sudo apt-get -y install apg
 #sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
 
 #Tell the install log we are done
-echo "NAG cloud install done"
+echo "Install done"
 
 

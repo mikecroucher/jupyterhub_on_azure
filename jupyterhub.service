@@ -4,8 +4,8 @@ After=syslog.target network.target
 
 [Service]
 User=azureuser
-Environment="PATH=/opt/conda/bin:/opt/conda/condabin:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
-ExecStart=/opt/conda/bin/jupyterhub -f /etc/jupyterhub/jupyterhub_config.py --JupyterHub.spawner_class=sudospawner.SudoSpawner
+Environment="PATH=:/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+ExecStart=/usr/local/bin/jupyterhub -f /etc/jupyterhub/jupyterhub_config.py --JupyterHub.spawner_class=sudospawner.SudoSpawner
 WorkingDirectory=/etc/jupyterhub/
 
 [Install]
