@@ -24,6 +24,7 @@ wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
 # Install Python modules required
 sudo pip install numpy
 sudo pip install torch
+sudo pip install jupyter-matlab-proxy
 
 #Configure JupyterHub
 #Generate default config
