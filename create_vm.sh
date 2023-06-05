@@ -5,7 +5,7 @@ certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
 backup_diskname=jupyterbackup
-vmName=jupyter40
+vmName=jupyter42
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
@@ -18,7 +18,7 @@ vm_secret=$(az vm secret format --secrets "$secret")
 az vm create \
     --resource-group $resourceGroupName \
     --name $vmName \
-    --image Ubuntu2204 \
+    --image Ubuntu2304 \
     --admin-username azureuser \
     --custom-data cloud-init.txt \
     --generate-ssh-keys \

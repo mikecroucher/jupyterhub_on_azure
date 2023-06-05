@@ -10,13 +10,18 @@ sudo apt-get update && sudo apt-get install azure-cli
 
 # Install JupyterHub
 sudo apt install python3-pip -y
+sudo apt install unzip -y
 sudo apt-get install nodejs npm -y
 sudo npm install -g configurable-http-proxy
-sudo  pip install jupyterhub
+sudo pip install jupyterhub
+sudo pip install jupyterthemes
+
+#For MATLAB kernel support
+sudo apt-get install xvfb -y 
 
 # Install MATLAB
 wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
-./mpm install \
+sudo ./mpm install \
         --release=R2023a \
         --destination=/opt/ \
         --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
@@ -61,6 +66,11 @@ EOF
 #Add jupyterhub admin users
 cat << EOF >> ./jupyterhub_config.py
 c.Authenticator.admin_users = {'azureuser', 'instructor'}
+EOF
+
+#Make Jupyter Lab the default
+cat << EOF >> ./jupyterhub_config.py
+c.Spawner.default_url = '/lab'
 EOF
 
 #copy the Jupyterhub config file
