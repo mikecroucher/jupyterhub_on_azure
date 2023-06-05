@@ -9,6 +9,7 @@ sudo apt-get update && sudo apt-get install azure-cli
 
 
 # Install JupyterHub
+sudo apt install python3-pip -y
 sudo apt-get install nodejs npm -y
 sudo  pip install jupyterhub
 
