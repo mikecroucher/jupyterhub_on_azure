@@ -19,21 +19,22 @@ sudo apt install python3-pip -y
 sudo apt install unzip -y
 sudo npm install -g configurable-http-proxy
 sudo pip install jupyterhub
-sudo pip install jupyterlab
-#sudo pip install jupyterlab-simpledark
-sudo pip install jupyter-matlab-proxy
-echo "Base of JupyterHub installed"
+sudo pip install jupyterthemes
 
 #For MATLAB kernel support
 sudo apt-get install xvfb -y 
 
 # Install MATLAB
-echo "Installing MATLAB"
 wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
 sudo ./mpm install \
         --release=R2023a \
-        --destination=/opt/matlab/ \
-        --products MATLAB
+        --destination=/opt/ \
+        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
+
+# Install Python modules required
+sudo pip install numpy
+sudo pip install torch
+sudo pip install jupyter-matlab-proxy
 
 #Configure JupyterHub
 #Generate default config
@@ -110,12 +111,11 @@ sudo systemctl start jupyterhub
 #Change this so only sudo users have this ability
 sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
 
-#Add to users' .bashrc
+#Add the aliases requested from the academics to .bashrc
 cat << EOF >> /etc/skel/.bashrc
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
-export PATH=/opt/matlab/bin/:$PATH
 EOF
 
 #create users
@@ -169,13 +169,5 @@ sudo apt-get -y install apg
 #sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
 
 #Tell the install log we are done
-
-
-# Install Python modules required
-echo "Installing Python Modules"
-#sudo pip install numpy
-#sudo pip install torch
-
 echo "Install done"
-
 
