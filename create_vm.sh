@@ -5,7 +5,7 @@ certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
 backup_diskname=jupyterbackup
-vmName=jupyter35
+vmName=jupyter36
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
