@@ -20,12 +20,19 @@ sudo apt install unzip -y
 sudo npm install -g configurable-http-proxy
 sudo pip install jupyterhub
 sudo pip install jupyterlab
-sudo pip install jupyterthemes
-sudo pip install jupyterlab-simpledark
+#sudo pip install jupyterlab-simpledark
 echo "Base of JupyterHub installed"
 
 #For MATLAB kernel support
 sudo apt-get install xvfb -y 
+
+# Install MATLAB
+echo "Installing MATLAB"
+wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
+sudo ./mpm install \
+        --release=R2023a \
+        --destination=/opt/matlab/ \
+        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
 
 #Configure JupyterHub
 #Generate default config
@@ -107,7 +114,7 @@ cat << EOF >> /etc/skel/.bashrc
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
-export PATH=/opt/matlab/:$PATH
+export PATH=/opt/matlab/bin/:$PATH
 EOF
 
 #create users
@@ -162,13 +169,6 @@ sudo apt-get -y install apg
 
 #Tell the install log we are done
 
-# Install MATLAB
-echo "Installing MATLAB"
-wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
-sudo ./mpm install \
-        --release=R2023a \
-        --destination=/opt/matlab/ \
-        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
 
 # Install Python modules required
 echo "Installing Python Modules"
