@@ -14,8 +14,16 @@ sudo apt-get install nodejs npm -y
 sudo npm install -g configurable-http-proxy
 sudo  pip install jupyterhub
 
-# Install modules required
+# Install MATLAB
+wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
+./mpm install \
+        --release=R2023a \
+        --destination=/opt/ \
+        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
+
+# Install Python modules required
 sudo pip install numpy
+sudo pip install torch
 
 #Configure JupyterHub
 #Generate default config
