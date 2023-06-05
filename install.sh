@@ -24,18 +24,6 @@ sudo pip install jupyterthemes
 #For MATLAB kernel support
 sudo apt-get install xvfb -y 
 
-# Install MATLAB
-wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
-sudo ./mpm install \
-        --release=R2023a \
-        --destination=/opt/ \
-        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
-
-# Install Python modules required
-sudo pip install numpy
-sudo pip install torch
-sudo pip install jupyter-matlab-proxy
-
 #Configure JupyterHub
 #Generate default config
 /usr/local/bin/jupyterhub --generate-config
@@ -169,6 +157,21 @@ sudo apt-get -y install apg
 #sed -i '/gamma/s/^#//g' /etc/cron.d/rsnapshot
 
 #Tell the install log we are done
+
+# Install MATLAB
+echo "Installing MATLAB"
+wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
+sudo ./mpm install \
+        --release=R2023a \
+        --destination=/opt/ \
+        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
+
+# Install Python modules required
+echo "Installing Python Modules"
+sudo pip install numpy
+sudo pip install torch
+sudo pip install jupyter-matlab-proxy
+
 echo "Install done"
 
 
