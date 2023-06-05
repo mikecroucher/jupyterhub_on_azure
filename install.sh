@@ -21,6 +21,7 @@ sudo npm install -g configurable-http-proxy
 sudo pip install jupyterhub
 sudo pip install jupyterlab
 #sudo pip install jupyterlab-simpledark
+sudo pip install jupyter-matlab-proxy
 echo "Base of JupyterHub installed"
 
 #For MATLAB kernel support
@@ -32,7 +33,7 @@ wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
 sudo ./mpm install \
         --release=R2023a \
         --destination=/opt/matlab/ \
-        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
+        --products MATLAB
 
 #Configure JupyterHub
 #Generate default config
@@ -172,9 +173,8 @@ sudo apt-get -y install apg
 
 # Install Python modules required
 echo "Installing Python Modules"
-sudo pip install numpy
-sudo pip install torch
-sudo pip install jupyter-matlab-proxy
+#sudo pip install numpy
+#sudo pip install torch
 
 echo "Install done"
 
