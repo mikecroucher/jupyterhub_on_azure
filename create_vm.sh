@@ -5,7 +5,7 @@ certificateName=mycert
 resourceGroupName=myResourceGroupSecureWeb2
 disk_name=earth_data
 backup_diskname=jupyterbackup
-vmName=jupyter42
+vmName=jupyter45
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
@@ -18,15 +18,15 @@ vm_secret=$(az vm secret format --secrets "$secret")
 az vm create \
     --resource-group $resourceGroupName \
     --name $vmName \
-    --image Ubuntu2304 \
+    --image Ubuntu2204 \
     --admin-username azureuser \
     --custom-data cloud-init.txt \
     --generate-ssh-keys \
     --secrets "$vm_secret"
 
 #Open the port for Jupyter
-az vm open-port --resource-group $resourceGroupName --name $vmName --port 443 --priority 100
-az vm open-port --resource-group $resourceGroupName --name $vmName --port 80 --priority 101
+az vm open-port --resource-group $resourceGroupName --name $vmName --port 443 --priority 101
+az vm open-port --resource-group $resourceGroupName --name $vmName --port 80 --priority 100
 
 jupyter_ip=$(az vm list --show-details --query "[?name=='$vmName'].{IP:publicIps}" -o tsv)
 

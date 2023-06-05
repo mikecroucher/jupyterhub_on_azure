@@ -19,7 +19,10 @@ sudo apt install python3-pip -y
 sudo apt install unzip -y
 sudo npm install -g configurable-http-proxy
 sudo pip install jupyterhub
+sudo pip install jupyterlab
 sudo pip install jupyterthemes
+sudo pip install jupyterlab-simpledark
+echo "Base of JupyterHub installed"
 
 #For MATLAB kernel support
 sudo apt-get install xvfb -y 
@@ -99,11 +102,12 @@ sudo systemctl start jupyterhub
 #Change this so only sudo users have this ability
 sudo sed -i s/DIR_MODE=0755/DIR_MODE=0750/g /etc/adduser.conf
 
-#Add the aliases requested from the academics to .bashrc
+#Add to users' .bashrc
 cat << EOF >> /etc/skel/.bashrc
 alias rm='rm -i'
 alias mv='mv -i'
 alias cp='cp -i'
+export PATH=/opt/matlab/:$PATH
 EOF
 
 #create users
@@ -163,7 +167,7 @@ echo "Installing MATLAB"
 wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
 sudo ./mpm install \
         --release=R2023a \
-        --destination=/opt/ \
+        --destination=/opt/matlab/ \
         --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
 
 # Install Python modules required
