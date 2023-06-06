@@ -22,6 +22,8 @@ sudo npm install -g configurable-http-proxy
 sudo pip install jupyterhub
 sudo pip install jupyterlab
 sudo pip install jupyterthemes
+#Forces downgrade of jupyterlab. Seems to resolve the stylesheet problem
+sudo pip install jupyterlab-simpledark
 
 #For MATLAB kernel support
 sudo apt-get install xvfb -y 
