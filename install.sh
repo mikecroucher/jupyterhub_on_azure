@@ -1,4 +1,5 @@
 #!/bin/bash
+#MATLAB works on this commit
 #Install Azure CLI
 AZ_REPO=$(lsb_release -cs)
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | \
