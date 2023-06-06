@@ -1,11 +1,11 @@
 #/bin/bash
-keyvaultName=jupyterkeyvault
+keyvaultName=jupyterkeyvault1
 location=westus2
 certificateName=mycert
-resourceGroupName=myResourceGroupSecureWeb2
+resourceGroupName=myResourceGroupSecureWeb4
 disk_name=earth_data
 backup_diskname=jupyterbackup
-vmName=jupyter45
+vmName=jupyter52
 
 #Obtain the ID of the certificate we want to use from the keyvault within the VM
 secret=$(az keyvault secret list-versions \
