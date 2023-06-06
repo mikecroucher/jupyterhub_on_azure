@@ -10,15 +10,16 @@ sudo apt-get update && sudo apt-get install azure-cli
 # Install node
 ## Standard repo is too old
 # sudo apt-get install nodejs npm -y
-curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
-sudo bash nodesource_setup.sh
-sudo apt-get install -y nodejs
+#curl -sL https://deb.nodesource.com/setup_18.x -o nodesource_setup.sh
+#sudo bash nodesource_setup.sh
+#sudo apt-get install -y nodejs
 
 # Install JupyterHub
 sudo apt install python3-pip -y
 sudo apt install unzip -y
 sudo npm install -g configurable-http-proxy
 sudo pip install jupyterhub
+sudo pip install jupyterlab
 sudo pip install jupyterthemes
 
 #For MATLAB kernel support
