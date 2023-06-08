@@ -33,7 +33,8 @@ wget -q https://www.mathworks.com/mpm/glnxa64/mpm && chmod +x mpm
 sudo ./mpm install \
         --release=R2023a \
         --destination=/opt/ \
-        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox
+        --products MATLAB Parallel_Computing_Toolbox Statistics_and_Machine_Learning_Toolbox Deep_Learning_Toolbox \
+	--no-gpu
 
 # Install Python modules required
 sudo pip install numpy
